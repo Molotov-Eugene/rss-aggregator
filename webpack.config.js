@@ -21,7 +21,7 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'template.html',
+      template: 'index.html',
     }),
   ],
   output: {

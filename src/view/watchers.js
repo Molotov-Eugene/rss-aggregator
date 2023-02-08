@@ -1,19 +1,13 @@
-import _ from 'lodash'
+import formRender from './form-render.js';
 
-const watchers = (path, value) => {
-  const inputElement = document.querySelector('#url-input');
-
+export default (path, value, elements) => {
   switch (path) {
-    case 'formState.errors':
-      if (!_.isEmpty(value)) {
-        inputElement.classList.add('is-invalid');
-      } else {
-        inputElement.classList.remove('is-invalid');
-      }
+    case 'formState.error':
+      formRender(elements, value);
+      break;
+    case 'formState.status':
       break;
     default:
       throw new Error(`unknown path ${path}`);
   }
 };
-
-export default watchers;
