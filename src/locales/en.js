@@ -10,7 +10,7 @@ const en = {
     subHeader: "Start reading RSS today! It's easy, it's beautiful.",
     placeholder: 'Link RSS',
     tip: 'Example: https://ru.hexlet.io/lessons.rss',
-    success: 'RSS uploaded successfully',
+    recieved: 'RSS uploaded successfully',
     errors: {
       required: 'This field cannot be empty',
       url: 'Please enter a valid url',

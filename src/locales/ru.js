@@ -10,7 +10,7 @@ const ru = {
     subHeader: 'Начните читать RSS сегодня! Это легко, это красиво.',
     placeholder: 'Ссылка RSS',
     tip: 'Пример: https://ru.hexlet.io/lessons.rss',
-    success: 'RSS успешно загружен',
+    recieved: 'RSS успешно загружен',
     errors: {
       required: 'Поле не должно быть пустым',
       url: 'Ссылка должна быть валидным URL',
