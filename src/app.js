@@ -7,31 +7,7 @@ import updatePosts from './utils/update-posts.js';
 import modalController from './controllers/modal-controller.js';
 
 const app = () => {
-  const { state, i18n } = config;
-
-  const elements = {
-    body: document.querySelector('body'),
-    form: document.querySelector('.rss-form'),
-    input: document.querySelector('#url-input'),
-    button: document.querySelector('[aria-label="add"]'),
-    feedback: document.querySelector('.feedback'),
-    posts: document.querySelector('.posts'),
-    feeds: document.querySelector('.feeds'),
-    locale: {
-      button: document.querySelector('[aria-label="add"]'),
-      placeholder: document.querySelector('label[for="url-input"]'),
-      tip: document.querySelector('.text-muted'),
-      header: document.querySelector('h1'),
-      subHeader: document.querySelector('.lead'),
-    },
-    modal: {
-      container: document.querySelector('.modal'),
-      title: document.querySelector('.modal-title'),
-      description: document.querySelector('.modal-body'),
-      readButton: document.querySelector('.full-article'),
-      closeButtons: document.querySelectorAll('[data-bs-dismiss="modal"]'),
-    },
-  };
+  const { state, i18n, elements } = config;
 
   const watcher = onChange(state, (path, value) => {
     render(path, value, elements, i18n);
