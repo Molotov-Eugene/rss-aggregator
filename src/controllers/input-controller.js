@@ -26,7 +26,6 @@ export default (elements, watcher, i18n) => {
         watcher.feeds.unshift(feed);
         watcher.posts.unshift(...postsWithID);
         watcher.formState.status = 'recieved';
-        elements.form.reset();
       }).catch((e) => {
         const error = e.isParsing ? i18n.t('errors.badRSS') : i18n.t('errors.network');
         watcher.formState.error = error;

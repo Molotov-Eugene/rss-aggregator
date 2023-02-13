@@ -14,6 +14,7 @@ export default (elements, status, i18n) => {
       elements.feedback.textContent = i18n.t('recieved');
       elements.feedback.classList.remove('text-danger');
       elements.feedback.classList.add('text-success');
+      elements.form.reset();
       break;
     default:
       throw new Error(`unexpected status ${status}`);
