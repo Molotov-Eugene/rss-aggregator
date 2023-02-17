@@ -60,7 +60,7 @@ const app = () => {
     render(path, value, elements, i18n);
   });
 
-  // form handler
+  // form handle
 
   elements.form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -70,24 +70,27 @@ const app = () => {
     const url = formData.get(elements.input.name).trim();
     const addedUrls = watchedState.feeds.map((feed) => feed.link);
 
+    const errorHandle = (e) => {
+      const errorList = {
+        'errors.required': i18n.t('errors.required'),
+        'errors.rssExist': i18n.t('errors.rssExist'),
+        'errors.badRSS': i18n.t('errors.badRSS'),
+        'errors.url': i18n.t('errors.url'),
+      };
+      const errorMessage = errorList[e.message] || i18n.t('errors.network');
+      watchedState.formState.error = errorMessage;
+      watchedState.formState.status = 'error';
+    };
+
     isValidUrl(url, addedUrls).then(() => {
       getData(watchedState, url).then(() => {
         watchedState.formState.error = '';
         watchedState.formState.status = 'recieved';
-      }).catch((e) => {
-        const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
-        console.log(i18n.t(e.message))
-        watchedState.formState.error = errorMessage;
-        watchedState.formState.status = 'error';
-      });
-    }).catch((e) => {
-      const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
-      console.log(i18n.t(e.message))
-      watchedState.formState.error = errorMessage;
-      watchedState.formState.status = 'error';
-    });
+      }).catch(errorHandle);
+    }).catch(errorHandle);
   });
-  // modal handler
+
+  // modal handle
 
   elements.posts.addEventListener('click', (event) => {
     if (event.target.dataset.bsToggle === 'modal') {
