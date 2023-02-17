@@ -76,13 +76,15 @@ const app = () => {
         watchedState.formState.status = 'recieved';
       }).catch((e) => {
         const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
+        console.log(i18n.t(e.message))
         watchedState.formState.error = errorMessage;
         watchedState.formState.status = 'error';
       });
     }).catch((e) => {
       const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
-      watchedState.formState.status = 'error';
+      console.log(i18n.t(e.message))
       watchedState.formState.error = errorMessage;
+      watchedState.formState.status = 'error';
     });
   });
   // modal handler
