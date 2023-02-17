@@ -78,11 +78,11 @@ const app = () => {
         const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
         watchedState.formState.error = errorMessage;
         watchedState.formState.status = 'error';
-      }).catch((e) => {
-        const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
-        watchedState.formState.status = 'error';
-        watchedState.formState.error = errorMessage;
       });
+    }).catch((e) => {
+      const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
+      watchedState.formState.status = 'error';
+      watchedState.formState.error = errorMessage;
     });
   });
   // modal handler
