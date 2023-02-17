@@ -8,7 +8,7 @@ export default (elements, posts, i18n) => {
   </div>
   <ul class="list-group border-0 rounded-0">
     ${posts.map((post) => (`<li class="list-group-item d-flex justify-content-between align-items-start border-0 border-end-0">
-        <a href="${he.encode(post.link)}" class="${post.readed ? 'fw-normal link-secondary' : 'fw-bold'}" data-id="${post.id}" target="_blank" rel="noopener noreferrer">
+        <a href="${he.encode(post.link)}" class="${post.isReaded ? 'fw-normal link-secondary' : 'fw-bold'}" data-id="${post.id}" target="_blank" rel="noopener noreferrer">
           ${he.encode(post.title)}
         </a>
         <button type="button" class="btn btn-outline-primary btn-sm" data-id="${post.id}" data-bs-toggle="modal" data-bs-target="#modal">

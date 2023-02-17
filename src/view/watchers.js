@@ -18,9 +18,7 @@ export default (path, value, elements, i18n) => {
     case 'posts':
       postsRender(elements, value, i18n);
       break;
-    case 'UIstate.visitedPosts':
-      break;
-    case 'UIstate.postID':
+    case 'UIstate.activePost':
       modalRender(elements, value);
       break;
     default:
