@@ -1,14 +1,11 @@
 import onChange from 'on-change';
 import i18next from 'i18next';
-import axios from 'axios';
-import { uniqueId } from 'lodash';
 import resources from './locales/index.js';
 import render from './view/watchers.js';
 import localeRender from './view/locale-render.js';
 import updatePosts from './utils/update-posts.js';
 import isValidUrl from './utils/isValidUrl.js';
-import parse from './utils/parser.js';
-import utils from './utils.js';
+import getData from './utils/getData.js';
 
 const app = () => {
   const defaultLanguage = document.documentElement.lang;
@@ -65,7 +62,6 @@ const app = () => {
 
   // form handler
 
-  const { proxy } = utils;
   elements.form.addEventListener('submit', (event) => {
     event.preventDefault();
     watchedState.formState.status = 'sending';
@@ -75,26 +71,20 @@ const app = () => {
     const addedUrls = watchedState.feeds.map((feed) => feed.link);
 
     isValidUrl(url, addedUrls).then(() => {
-      axios({ url: proxy(url) }).then((response) => {
+      getData(watchedState, url).then(() => {
         watchedState.formState.error = '';
-        const data = parse(response.data.contents, url);
-        const { feed, posts } = data;
-        const postsWithID = posts.map((x) => ({ ...x, id: uniqueId() }));
-        watchedState.feeds.unshift(feed);
-        watchedState.posts.unshift(...postsWithID);
         watchedState.formState.status = 'recieved';
       }).catch((e) => {
         const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
         watchedState.formState.error = errorMessage;
         watchedState.formState.status = 'error';
+      }).catch((e) => {
+        const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
+        watchedState.formState.status = 'error';
+        watchedState.formState.error = errorMessage;
       });
-    }).catch((e) => {
-      const errorMessage = i18n.t(e.message) !== '' ? i18n.t(e.message) : i18n.t('errors.network');
-      watchedState.formState.status = 'error';
-      watchedState.formState.error = errorMessage;
     });
   });
-
   // modal handler
 
   elements.posts.addEventListener('click', (event) => {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import utils from '../utils.js';
+import utils from './utils.js';
 import parser from './parser.js';
 
 const getLinks = (arr) => arr.map((feed) => feed.link);
