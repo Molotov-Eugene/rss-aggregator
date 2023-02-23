@@ -9,6 +9,5 @@ export default (watchedState, url) => axios({ url: proxy(url) }).then((response)
   const data = parse(response.data.contents, url);
   const { feed, posts } = data;
   const postsWithID = posts.map((x) => ({ ...x, id: uniqueId() }));
-  watchedState.feeds.unshift(feed);
-  watchedState.posts.unshift(...postsWithID);
+  return { feed, postsWithID };
 });

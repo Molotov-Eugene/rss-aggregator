@@ -1,5 +1,5 @@
-export default (elements, status, i18n) => {
-  switch (status) {
+export default (elements, formState, i18n) => {
+  switch (formState) {
     case 'sending':
       elements.input.setAttribute('readonly', true);
       elements.button.disabled = true;
@@ -17,6 +17,6 @@ export default (elements, status, i18n) => {
       elements.form.reset();
       break;
     default:
-      throw new Error(`unexpected status ${status}`);
+      throw new Error(`unexpected status ${formState}`);
   }
 };

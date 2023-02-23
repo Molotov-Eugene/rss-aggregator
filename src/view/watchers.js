@@ -7,9 +7,9 @@ import modalRender from './modal-render.js';
 export default (path, value, elements, i18n) => {
   switch (path) {
     case 'formState.error':
-      formRender(elements, value);
+      formRender(elements, value, i18n);
       break;
-    case 'formState.status':
+    case 'formState.formState':
       processRender(elements, value, i18n);
       break;
     case 'feeds':

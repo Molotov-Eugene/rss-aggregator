@@ -4,7 +4,7 @@ export default (data, url) => {
   const error = parsedData.querySelector('parsererror');
 
   if (error) {
-    throw new Error('errors.badRSS');
+    throw new Error('badRSS');
   }
 
   const feed = {

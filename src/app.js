@@ -14,7 +14,7 @@ const app = () => {
     lng: defaultLanguage,
     formState: {
       error: '',
-      status: '',
+      formState: '',
     },
     feeds: [],
     posts: [],
@@ -64,30 +64,25 @@ const app = () => {
 
   elements.form.addEventListener('submit', (event) => {
     event.preventDefault();
-    watchedState.formState.status = 'sending';
+    watchedState.formState.formState = 'sending';
 
     const formData = new FormData(elements.form);
     const url = formData.get(elements.input.name).trim();
     const addedUrls = watchedState.feeds.map((feed) => feed.link);
 
     const errorHandle = (e) => {
-      const errorList = {
-        'errors.required': i18n.t('errors.required'),
-        'errors.rssExist': i18n.t('errors.rssExist'),
-        'errors.badRSS': i18n.t('errors.badRSS'),
-        'errors.url': i18n.t('errors.url'),
-      };
-      const errorMessage = errorList[e.message] || i18n.t('errors.network');
-      watchedState.formState.error = errorMessage;
-      watchedState.formState.status = 'error';
+      watchedState.formState.error = e.message;
+      watchedState.formState.formState = 'error';
     };
 
-    isValidUrl(url, addedUrls).then(() => {
-      getData(watchedState, url).then(() => {
+    Promise.all([isValidUrl(url, addedUrls), getData(watchedState, url)])
+      .then((values) => {
+        const [, data] = values;
+        watchedState.feeds.unshift(data.feed);
+        watchedState.posts.unshift(...data.postsWithID);
         watchedState.formState.error = '';
-        watchedState.formState.status = 'recieved';
+        watchedState.formState.formState = 'recieved';
       }).catch(errorHandle);
-    }).catch(errorHandle);
   });
 
   // modal handle
