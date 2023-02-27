@@ -4,6 +4,9 @@ export default (data, url) => {
   const error = parsedData.querySelector('parsererror');
 
   if (error) {
+    /* eslint no-console: ["error", { allow: ["warn"] }] */
+    console.warn('Something went wrong while parsing. Check output below:');
+    console.warn(error);
     throw new Error('badRSS');
   }
 
