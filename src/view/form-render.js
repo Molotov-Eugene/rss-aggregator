@@ -4,7 +4,7 @@ export default (elements, error, i18n) => {
     rssExist: i18n.t('errors.rssExist'),
     badRSS: i18n.t('errors.badRSS'),
     invalidURL: i18n.t('errors.url'),
-    network: i18n.t('errors.network'),
+    'Network Error': i18n.t('errors.network'),
   };
 
   elements.feedback.textContent = errorList[error] || error;

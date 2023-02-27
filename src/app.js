@@ -75,7 +75,7 @@ const app = () => {
       watchedState.formState.formState = 'error';
     };
 
-    Promise.all([isValidUrl(url, addedUrls), getData(watchedState, url)])
+    Promise.all([isValidUrl(url, addedUrls), getData(url)])
       .then((values) => {
         const [, data] = values;
         watchedState.feeds.unshift(data.feed);

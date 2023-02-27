@@ -5,7 +5,7 @@ import parse from './parser.js';
 
 const { proxy } = utils;
 
-export default (watchedState, url) => axios({ url: proxy(url) }).then((response) => {
+export default (url) => axios({ url: proxy(url) }).then((response) => {
   const data = parse(response.data.contents, url);
   const { feed, posts } = data;
   const postsWithID = posts.map((x) => ({ ...x, id: uniqueId() }));
