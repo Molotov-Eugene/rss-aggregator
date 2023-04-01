@@ -9,7 +9,7 @@ const ru = {
     button: 'Добавить',
     subHeader: 'Начните читать RSS сегодня! Это легко, это красиво.',
     placeholder: 'Ссылка RSS',
-    tip: 'Пример: https://ru.hexlet.io/lessons.rss',
+    tip: 'Пример: http://promodj.ru/tracks/rss.xml',
     recieved: 'RSS успешно загружен',
     errors: {
       required: 'Поле не должно быть пустым',
