@@ -1,4 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 
 export default {
   mode: process.env.NODE_ENV || 'development',
@@ -23,6 +24,7 @@ export default {
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
+    new FaviconsWebpackPlugin('./favicon.png')
   ],
   output: {
     clean: true,
