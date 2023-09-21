@@ -7,7 +7,7 @@ Status:
 
 About:
 ---
-[Rss aggregator](https://rss-aggregator-blush.vercel.app/) - is an app for aggregating and reading RSS feeds from many sources.
+[Rss aggregator](https://molotov-rss.vercel.app/) - is an app for aggregating and reading RSS feeds from many sources.
 
 For participants:
 ---
